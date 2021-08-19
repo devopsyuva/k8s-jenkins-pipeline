@@ -14,7 +14,7 @@ podTemplate(nodeSelector: 'kubernetes.io/hostname=computeplaneone', containers: 
         stage('Deploy nginx') { 
             git url: 'https://github.com/dubareddy/k8s-jenkins-pipeline.git', branch: 'main' 
             container('kubectl') { 
-                stage('Build a testtwo project') { 
+                stage('Build a testtwo project for demo') { 
                     withKubeConfig([credentialsId: 'gcp_k8s']) { 
                         sh ''' 
                         date 
