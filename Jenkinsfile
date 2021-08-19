@@ -12,7 +12,7 @@ podTemplate(nodeSelector: 'kubernetes.io/hostname=computeplaneone', containers: 
             } 
         } 
         stage('Deploy nginx') { 
-            git url: 'https://github.com/dubareddy/kubernetes_latest_manifest.git', branch: 'main' 
+            git url: 'https://github.com/dubareddy/k8s-jenkins-pipeline.git', branch: 'main' 
             container('kubectl') { 
                 stage('Build a testtwo project') { 
                     withKubeConfig([credentialsId: 'gcp_k8s']) { 
@@ -24,8 +24,8 @@ podTemplate(nodeSelector: 'kubernetes.io/hostname=computeplaneone', containers: 
                         kubectl get nodes 
                         kubectl get po -A -o wide 
                         kubectl apply -f ./pod/sample-nginx.yaml 
-			                  sleep 20
-			                  kubectl get po -o wide 
+			sleep 20
+			kubectl get po -o wide 
                         ''' 
                     } 
                 } 
