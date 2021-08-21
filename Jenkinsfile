@@ -1,4 +1,4 @@
-def label = "jenkins-slave-UUID.randomUUID().toString()"
+def label = "jenkins-slave-${UUID.randomUUID().toString()}"
 podTemplate(label: label, nodeSelector: 'kubernetes.io/hostname=computeplaneone', namespace: 'cicd-operations', containers: [ 
     containerTemplate(name: 'kubectl', image: 'ubuntu:20.04', command: 'sleep', args: '99d'), 
     containerTemplate(name: 'testone', image: 'ubuntu:18.04', command: 'sleep', args: '99d') 
