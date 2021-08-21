@@ -1,9 +1,9 @@
-def label = UUID.randomUUID().toString()
-podTemplate(pod_label: 'jenkins-slave-run-${label}', nodeSelector: 'kubernetes.io/hostname=computeplaneone', namespace: 'cicd-operations', containers: [ 
+def pod_label = "jenkins-slave-UUID.randomUUID().toString()
+podTemplate(label: pod_label, nodeSelector: 'kubernetes.io/hostname=computeplaneone', namespace: 'cicd-operations', containers: [ 
     containerTemplate(name: 'kubectl', image: 'ubuntu:20.04', command: 'sleep', args: '99d'), 
     containerTemplate(name: 'testone', image: 'ubuntu:18.04', command: 'sleep', args: '99d') 
   ]) { 
-    node(pod_label) { 
+    node(label) { 
         stage('Get testone project') { 
             git 'https://github.com/jenkinsci/kubernetes-plugin.git' 
             container('testone') { 
