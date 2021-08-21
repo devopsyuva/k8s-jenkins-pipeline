@@ -3,7 +3,7 @@ podTemplate(label: 'jenkins-slave-run-${suiteRunId}', nodeSelector: 'kubernetes.
     containerTemplate(name: 'kubectl', image: 'ubuntu:20.04', command: 'sleep', args: '99d'), 
     containerTemplate(name: 'testone', image: 'ubuntu:18.04', command: 'sleep', args: '99d') 
   ]) { 
-    node(POD_LABEL) { 
+    node(label) { 
         stage('Get testone project') { 
             git 'https://github.com/jenkinsci/kubernetes-plugin.git' 
             container('testone') { 
